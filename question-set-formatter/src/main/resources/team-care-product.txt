@@ -1,0 +1,29 @@
+*SYMPTOM 1
+When did it start?_
+Where is it located (i.e. lips, fingertips, gums, tongue, face, feet)?_
+How long does it last?_
+Is there any history of heart and/or respiratory problems?_
+Is there any:
+	Fever?_
+	Fatigue?_
+	Cough?_
+	Shortness of breath (dyspnea)?_
+Is any pain associated with the cyanosis?_
+Is the cyanosis related to exertion?_
+If cyanosis in fingers, is it related to cold weather?_
+If cyanosis in feet, is there pain in legs when walking?_
+Consider:
+	Pulse oximeter reading
+	Peak flow meter reading
+*SYMPTOM 2/(Follow-up)
+Describe which joint(s) are presently bothersome._
+Describe the intensity of the pain for each joint (on a scale of 1-10 with 1 being the least and 10 being the most)._
+How does the pain impact daily life?_
+Is the pain worse with walking, after sitting, or sleeping?_
+Since last visit, are there any new symptoms?_
+At last visit, were any changes made to medications or new ones started?_
+	How much benefit has resulted from these changes to medications?_
+Since last visit, have any specialists been seen for this problem?_
+	If so, how often?_
+Is the pain getting better, worse or staying the same?_
+Are there any other comments that should be noted about this problem?_
