@@ -1,16 +1,17 @@
 package com.stevenwrobbins;
 
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class App {
-    public App() {
-    }
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException, IOException {
         App app = new App();
         app.readFile();
     }
@@ -40,20 +41,21 @@ public class App {
         }
     };
 
+    @SuppressWarnings("StatementWithEmptyBody")
     public void processLine(String line) {
         loadContext.line(line);
 
-        while (loadContext.state().process(loadContext)) {
-            ;
-        }
+        while (loadContext.state().process(loadContext)) {}
     }
 
-    public void readFile() {
-        try (Stream<String> stream = Files.lines(Paths.get(this.getClass().getResource("/team-care-product.txt").getFile()),
-                Charset.defaultCharset())) {
-            stream.forEach(line -> processLine(line));
-        } catch (IOException ex) {
-            System.err.println(ex);
+    public void readFile() throws URISyntaxException, IOException {
+        URL fileUrl = App.class.getResource("/team-care-product.txt");
+
+        // WORKAROUND: SROBBINS -- Windows gets leading '/' that Files.lines() doesn't like without this.
+        Path filePath = Paths.get(new URI(fileUrl.toExternalForm()));
+
+        try (Stream<String> stream = Files.lines(filePath, Charset.defaultCharset())) {
+            stream.forEach(this::processLine);
         }
     }
 
@@ -64,7 +66,6 @@ public class App {
                     context.state(States.SYMPTOM);
                     return true;
                 }
-                ;
 
                 return false;
             }
@@ -117,7 +118,7 @@ public class App {
 
                 return true;
             }
-        };
+        }
     }
 
     interface Context {
@@ -136,7 +137,5 @@ public class App {
          */
         boolean process(Context context);
     }
-
-
 }
 
