@@ -1,5 +1,9 @@
 package com.stevenwrobbins;
 
+import org.docx4j.openpackaging.exceptions.Docx4JException;
+import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,9 +15,18 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 public class App {
-    public static void main(String[] args) throws URISyntaxException, IOException {
+    public static void main(String[] args) throws URISyntaxException, IOException, Docx4JException {
         App app = new App();
         app.readFile();
+        app.createWordFile();
+    }
+
+    private void createWordFile() throws Docx4JException {
+        WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new File("question-set-template.docx"));
+        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Title", "New Title!");
+        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Subtitle", "New Subtitle!");
+        wordMLPackage.getMainDocumentPart().addStyledParagraphOfText("Heading1", "New Question!");
+        wordMLPackage.save(new java.io.File("HelloWord.docx"));
     }
 
     private Context loadContext = new Context() {
